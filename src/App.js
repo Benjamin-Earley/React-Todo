@@ -39,6 +39,14 @@ class App extends React.Component {
     this.setState({
       todoData : [...this.state.todoData, newItem]
     })
+    console.log(this.state)
+  }
+
+  clearCompleted = event => {
+    event.preventDefault()
+    this.setState({
+      todoData : this.state.todoData.filter(item => !item.completed)
+    })
   }
 
   render() {
@@ -48,8 +56,10 @@ class App extends React.Component {
           <h2>Welcome to your Todo App!</h2>
           <TodoForm addItem={this.addItem} />
         </div>
-        <TodoList todoData={this.state.todoData} 
+        <TodoList 
+          todoData={this.state.todoData} 
           toggleTodo={this.toggleTodo}
+          clearCompleted={this.clearCompleted}
         />
       </div>
     );
